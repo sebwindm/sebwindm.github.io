@@ -33,14 +33,31 @@
                 <div class="card">
                     <h2 class="card-title">Untitled - master thesis</h2>
                     <div class="card-body">
-                    <p class="card-text"> The master thesis has two components, all written in <b>Python</b>:
+                    <p class="card-text"> The master thesis has two components:
                     </p>
                     <ol>
-                        <li>Custom environment for <a class="text-success" href="http://gym.openai.com/">OpenAI Gym</a> containing the simulation of a production system (system parameters are based on literature). This environment allows a reinforcement learning agent to interact with the production system and learn from its interactions with the system.
+                        <li>A custom environment for <a class="text-success" href="http://gym.openai.com/">OpenAI Gym</a> containing the simulation of a job shop production system. 
+                            This environment allows a reinforcement learning (RL) agent to interact with the production system through a structured interface.
+                            The RL agent can control the production capacity through this interface and receives back a reward (in form of incurred costs).
+                            On the long run, the agent can learn what its actions caused inside the environment due to the feedback it received for each action.
+                            This allows the agent to make better decisions in the future, with the goal being that the agent can beat
+                            established heuristics or human decision making. 
                         </li>
-                        <li>An example implementation of a reinforcement learning agent for this environment
+                        <li>An implementation of a reinforcement learning agent for the environment from above, based on the Deep Q-Learning algorithm
+                            of <a class="text-success" href="https://stable-baselines3.readthedocs.io/en/master/">Stable Baselines 3</a>.
+                        The original algorithm has received additional functionality by adding Average Reward Adjusted Discounted Reinforcement Learning,
+                        a technique that allows RL agents to handle rewards of less established shapes, i.e. periodically incurred costs. 
                         </li>
-                    </ol></div>
+                    </ol>
+                    <h5 class="card-text">What is still missing:</h5>
+                    <ul>
+                        <li>Tweaking of neural network parameters</li>
+                        <li>Improvement of environment state representation</li>
+                    </ul>
+                    <p class="card-text">Technologies used:
+                        <b>Python</b>, <b>PyTorch</b>, <b>Reinforcement Learning</b></p></div>
+                    
+            
                     <div class="card-footer">
                         <a class="btn btn-secondary btn-success" href="https://github.com/sebwindm/masterarbeit" role="button">View
                             details &raquo;</a>
@@ -52,15 +69,39 @@
                 <div class="card">
                     <h2 class="card-title">Apartment price predictor</h2>
                     <div class="card-body">
-                    <p class="card-text">The apartment price predictor (APP) scrapes apartment offerings from the web and allows the user
+                    <p class="card-text">The apartment price predictor scrapes apartment offerings from the web and allows the user
                         to predict the price/rent for an apartment, given certain features like number of rooms and the
                         size of the apartment.</p>
-                    <p class="card-text">APP is currently under development and not deployed anywhere (backend isn't finished yet)</p>
-                    <ul>
-                        <li>Web scraper: <b>Python</b></li>
-                        <li>Data base: <b>PostgreSQL</b></li>
-                        <li>Price prediction model: <b>Ordinary least squares Linear Regression </b></li>
-                    </ul></div>
+                        <p class="card-text">The application is supposed to help people get a grasp of how much a desired apartment should cost. 
+                        They can play around with the input parameters and see for example how the price would change if the living area 
+                        increased by 10m². 
+                        </p>
+                    <h5 class="card-text">What works so far:</h5>
+                    <p class="card-text">
+                        <ul>
+                            <li>
+                                The web scraper crawls an apartment search engine (currently only for one city) and
+                                 stores each apartment's living area, number of rooms and rent into a database.
+                            </li>
+                            <li>A cleanup script checks the database for duplicates and deletes them</li>
+                            <li>The predictor script asks the user to give the number of rooms and living area for a new apartment.
+                                It then feeds those two features into a pre-trained machine learning model (linear regression) which 
+                                predicts a price for the apartment. 
+                            </li>
+                            
+                        </ul>
+                        <h5 class="card-text">What is still missing:</h5>
+                        <ul>
+                            <li>The entire backend</li>
+                            <li>Deployment as a publicly accessible web app based on a Django web server running inside a Docker container </li>
+                        </ul>
+                    
+                </p>
+            
+                    <p class="card-text">Technologies used:
+                        <b>Python</b>, <b>PostgreSQL</b>, <b>Linear Regression</b></p>
+                    </div>
+                    
 
                     <div class="card-footer">
                         <a class="btn btn-secondary btn-success" href="https://github.com/sebwindm/apartment-price-predictor"
